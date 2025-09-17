@@ -2,6 +2,7 @@ package pildonitas.pdnt.medication.dto;
 
 import pildonitas.pdnt.medication.Medication;
 import pildonitas.pdnt.medication.status.Status;
+import pildonitas.pdnt.user.User;
 
 public class MedicationMapper {
     public static Medication dtoToEntity(MedicationRequest dto, User user) {
