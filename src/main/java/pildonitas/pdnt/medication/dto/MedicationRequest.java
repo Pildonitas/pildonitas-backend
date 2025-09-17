@@ -8,7 +8,8 @@ import java.time.LocalTime;
 
 
 public record MedicationRequest(
-        Long id,
+    Long id,
+    Long userId,
 
     @NotBlank
     String name,
