@@ -26,7 +26,7 @@ public class MedicationService {
     public List<MedicationResponse> getMedicationsByUser(Long id) {
         List<Medication> medications = medicationRepository.findByUserId(id);
         return medications.stream()
-                .map(medications -> MedicationMapper.entityToDto(medications)).toList();
+                .map(medication -> MedicationMapper.entityToDto(medication)).toList();
     }
     public MedicationResponse addMedication(MedicationRequest medicationRequest, Long userId) {
         User foundUser = userRepository.findById(userId)
