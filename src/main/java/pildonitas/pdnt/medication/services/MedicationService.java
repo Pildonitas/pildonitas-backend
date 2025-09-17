@@ -8,6 +8,8 @@ import pildonitas.pdnt.medication.dto.MedicationMapper;
 import pildonitas.pdnt.medication.dto.MedicationRequest;
 import pildonitas.pdnt.medication.dto.MedicationResponse;
 import pildonitas.pdnt.medication.exceptions.custom_exceptions.UserNotFoundException;
+import pildonitas.pdnt.user.User;
+import pildonitas.pdnt.user.UserRepository;
 
 import java.util.List;
 

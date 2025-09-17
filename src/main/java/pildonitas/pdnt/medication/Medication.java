@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import pildonitas.pdnt.medication.status.Status;
+import pildonitas.pdnt.user.User;
 
 import java.time.LocalTime;
 

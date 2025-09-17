@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import pildonitas.pdnt.medication.dto.MedicationRequest;
 import pildonitas.pdnt.medication.dto.MedicationResponse;
 import pildonitas.pdnt.medication.services.MedicationService;
+import pildonitas.pdnt.user.User;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/medications")
+@RequestMapping("/api/medications")
 public class MedicationController {
     private final MedicationService medicationService;
 
@@ -20,16 +21,15 @@ public class MedicationController {
         this.medicationService = medicationService;
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{id}")
     public ResponseEntity<List<MedicationResponse>> getMedicationByUser(@PathVariable Long userId) {
         List<MedicationResponse> medications = medicationService.getMedicationsByUser(userId);
         return new ResponseEntity<>(medications, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<MedicationResponse> addMedication(@Valid @RequestBody MedicationRequest MedicationRequest, @AuthenticationPrincipal User user) {
+    public ResponseEntity<MedicationResponse> addMedication(@Valid @RequestBody MedicationRequest medicationRequest, @AuthenticationPrincipal User user) {
         MedicationResponse MedicationResponse = medicationService.addMedication(medicationRequest, user.getId());
         return new ResponseEntity<>(MedicationResponse, HttpStatus.CREATED);
     }
-
 }
