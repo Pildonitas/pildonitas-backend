@@ -28,8 +28,11 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id, @AuthenticationPrincipal CustomUserDetail currentUser) {
-        UserResponse userResponse = userService.getUserResponseById(id);
-        return new ResponseEntity<>(userResponse, HttpStatus.OK);
+        if (currentUser.getUser().getRole() == Role.ADMIN || currentUser.getUser().getId().equals(id)) {
+            UserResponse userResponse = userService.getUserResponseById(id);
+            return new ResponseEntity<>(userResponse, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     @PutMapping("/users/{id}")

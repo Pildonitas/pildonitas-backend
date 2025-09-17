@@ -2,9 +2,6 @@ package pildonitas.pdnt.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -34,11 +31,16 @@ public class User {
 
     private String allergies;
 
-    public User(String username, String name, String email, String password, String allergies) {
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    public User(String username, String name, String email, String password, String allergies, Role role) {
         this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
         this.allergies = allergies;
+        this.role = role;
     }
 }
