@@ -1,4 +1,4 @@
 package pildonitas.pdnt.auth;
 
-public record JwtResponse() {
+public record JwtResponse(String token) {
 }
