@@ -21,7 +21,7 @@ public class MedicationController {
         this.medicationService = medicationService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{userId}")
     public ResponseEntity<List<MedicationResponse>> getMedicationByUser(@PathVariable Long userId) {
         List<MedicationResponse> medications = medicationService.getMedicationsByUser(userId);
         return new ResponseEntity<>(medications, HttpStatus.OK);
