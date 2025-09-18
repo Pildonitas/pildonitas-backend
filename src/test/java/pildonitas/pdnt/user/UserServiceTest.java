@@ -13,11 +13,11 @@ import pildonitas.pdnt.exceptions.EntityAlreadyExistsException;
 import pildonitas.pdnt.user.dto.UserRequest;
 import pildonitas.pdnt.user.dto.UserResponse;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -61,6 +61,24 @@ public class UserServiceTest {
 
 
         verify(userRepository, times(1)).findByUsername("TestUser");
+    }
+
+    @Test
+    @DisplayName("Should get all users")
+    void getAllUsers_whenUserExist_returnsListOfUserResponse() {
+        when(userRepository.findAll()).thenReturn(List.of(user));
+
+        List<UserResponse> result = userService.getAllUsers();
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals("TestUser", result.getFirst().username());
+        assertEquals("Test Name", result.getFirst().name());
+        assertEquals("test@email.com", result.getFirst().email());
+        assertEquals("Penicilina", result.getFirst().allergies());
+
+        verify(userRepository, times(1)).findAll();
+
     }
 
     @Test
