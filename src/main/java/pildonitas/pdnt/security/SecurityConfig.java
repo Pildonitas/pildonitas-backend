@@ -46,6 +46,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/medications/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/medications/{id}").hasRole("USER")
 
+                        .requestMatchers(HttpMethod.POST, "/api/intakes/{medicationId}").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/intakes").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/intakes/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/intakes/{id}").hasRole("USER")
+
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedEntryPoint()))
