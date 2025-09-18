@@ -14,8 +14,6 @@ import pildonitas.pdnt.user.UserService;
 import pildonitas.pdnt.user.dto.UserRequest;
 import pildonitas.pdnt.user.dto.UserResponse;
 
-import static pildonitas.pdnt.user.Role.USER;
-
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/auth")
