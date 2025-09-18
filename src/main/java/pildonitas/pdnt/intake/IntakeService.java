@@ -48,7 +48,11 @@ public class IntakeService {
     public IntakeResponse updateIntake(Long id, IntakeRequest request) {
         Intake intake = intakeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Intake not found"));
 
-        IntakeMapper.updateEntityFromRequest(intake, request);
+        intake.setStatus(request.getStatus());
+
+        if(request.getStatus() == Status.TAKEN && intake.getTakenAt() == null) {
+            intake.setTakenAt(LocalDateTime.now());
+        }
 
         return IntakeMapper.entityToDto(intakeRepository.save(intake));
     }

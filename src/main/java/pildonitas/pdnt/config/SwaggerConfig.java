@@ -32,6 +32,5 @@ public class SwaggerConfig {
                         .addSchemas("ErrorResponse", new Schema<>())
                         .addResponses("NoContent", new ApiResponse()
                                 .description("Successfully processed request with no content")));
-
     }
 }
