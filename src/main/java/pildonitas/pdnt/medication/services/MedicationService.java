@@ -29,6 +29,14 @@ public class MedicationService {
         return medications.stream()
                 .map(medication -> MedicationMapper.entityToDto(medication)).toList();
     }
+
+    public MedicationResponse getMedicationById(Long medicationId){
+        Medication medication = medicationRepository.findById(medicationId)
+                .orElseThrow(() -> new MedicationNotFoundException(
+                        "Medication with id" + medicationId + "not found"));
+        return MedicationMapper.entityToDto(medication);
+    }
+
     public MedicationResponse addMedication(MedicationRequest medicationRequest, Long userId) {
         User foundUser = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User " + userId + "not found"));
