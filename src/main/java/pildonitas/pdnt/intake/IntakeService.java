@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pildonitas.pdnt.intake.dtos.IntakeMapper;
+import pildonitas.pdnt.intake.dtos.IntakeRequest;
 import pildonitas.pdnt.intake.dtos.IntakeResponse;
 import pildonitas.pdnt.medication.Medication;
 import pildonitas.pdnt.medication.MedicationRepository;
-import pildonitas.pdnt.medication.status.Status;
+import pildonitas.pdnt.intake.status.Status;
 import pildonitas.pdnt.security.CustomUserDetail;
 import pildonitas.pdnt.user.User;
 import pildonitas.pdnt.user.UserRepository;
@@ -42,5 +43,13 @@ public class IntakeService {
                 .stream()
                 .map(IntakeMapper::entityToDto)
                 .toList();
+    }
+
+    public IntakeResponse updateIntake(Long id, IntakeRequest request) {
+        Intake intake = intakeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Intake not found"));
+
+        IntakeMapper.updateEntityFromRequest(intake, request);
+
+        return IntakeMapper.entityToDto(intakeRepository.save(intake));
     }
 }
