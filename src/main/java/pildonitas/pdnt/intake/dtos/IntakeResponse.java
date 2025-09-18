@@ -1,4 +1,12 @@
 package pildonitas.pdnt.intake.dtos;
 
-public class IntakeResponse {
+import java.time.LocalDateTime;
+
+public record IntakeResponse(
+        Long id,
+        Long medicationId,
+        LocalDateTime intakeTime,
+        String status,
+        LocalDateTime takenAt
+) {
 }

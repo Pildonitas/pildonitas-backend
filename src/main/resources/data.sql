@@ -21,5 +21,23 @@ INSERT INTO medications (id, user_id, medication_name, description, hour_initial
 (11, 3, 'Vitamina D 1000UI', 'Suplemento vitamínico', '13:00:00', '1 cápsula', 'Pescado', 'Una vez al día', NULL, 'PENDING'),
 (12, 3, 'Diazepam 5mg', 'Ansiolítico', '21:00:00', '1 comprimido', 'Ninguna', 'Cuando sea necesario', '21:30:00', 'TAKEN');
 
+INSERT INTO intakes (id, medication_id, intake_time, status, taken_at) VALUES
+(1, 1, '2025-09-17 08:00:00', 'PENDING', NULL),
+(2, 1, '2025-09-17 16:00:00', 'PENDING', NULL),
+(3, 2, '2025-09-17 12:00:00', 'TAKEN', '2025-09-17 12:05:00'),
+(4, 3, '2025-09-17 09:00:00', 'PENDING', NULL),
+(5, 4, '2025-09-17 07:30:00', 'TAKEN', '2025-09-17 07:35:00'),
+
+(6, 5, '2025-09-17 09:00:00', 'PENDING', NULL),
+(7, 6, '2025-09-17 08:00:00', 'TAKEN', '2025-09-17 08:10:00'),
+(8, 7, '2025-09-17 22:00:00', 'PENDING', NULL),
+(9, 8, '2025-09-17 08:00:00', 'DELAYED', NULL),
+
+(10, 9, '2025-09-17 07:00:00', 'TAKEN', '2025-09-17 07:05:00'),
+(11, 10, '2025-09-17 08:00:00', 'PENDING', NULL),
+(12, 11, '2025-09-17 13:00:00', 'PENDING', NULL),
+(13, 12, '2025-09-17 21:00:00', 'TAKEN', '2025-09-17 21:30:00');
+
 ALTER TABLE users AUTO_INCREMENT = 4;
 ALTER TABLE medications AUTO_INCREMENT = 13;
+ALTER TABLE intakes AUTO_INCREMENT = 14;
