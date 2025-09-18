@@ -31,9 +31,6 @@ public class Medication {
     @Column(nullable = false, name = "description")
     private String description;
 
-    @Column(name = "hour_initial")
-    private LocalTime hourInitial;
-
     @Column(nullable = false, name = "dosage")
     private String dosage;
 
@@ -42,9 +39,6 @@ public class Medication {
 
     @Column(nullable = false, name = "frequency")
     private String frequency;
-
-    @Column(name = "taken_at")
-    private LocalTime takenAt;
 
     @Enumerated(EnumType.STRING)
     @Column

@@ -8,11 +8,9 @@ public record MedicationResponse(
         Long id,
         String name,
         String description,
-        LocalTime hourInitial,
         String dosage,
         String allergies,
         String frequency,
-        LocalTime takenAt,
         Status status
 ) {
 }

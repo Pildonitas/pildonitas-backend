@@ -10,11 +10,9 @@ public class MedicationMapper {
                 .user(user)
                 .name(dto.name())
                 .description(dto.description())
-                .hourInitial(dto.hourInitial())
                 .dosage(dto.dosage())
                 .allergies(dto.allergies())
                 .frequency(dto.frequency())
-                .takenAt(dto.takenAt())
                 .status(dto.status())
                 .build();
     }
@@ -24,11 +22,9 @@ public class MedicationMapper {
                 medication.getId(),
                 medication.getName(),
                 medication.getDescription(),
-                medication.getHourInitial(),
                 medication.getDosage(),
                 medication.getAllergies(),
                 medication.getFrequency(),
-                medication.getTakenAt(),
                 medication.getStatus()
         );
     }

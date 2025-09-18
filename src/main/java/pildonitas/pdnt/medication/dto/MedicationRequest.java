@@ -16,7 +16,6 @@ public record MedicationRequest(
 
     @NotBlank
     String description,
-    LocalTime hourInitial,
 
     @NotBlank
     String dosage,
@@ -24,7 +23,6 @@ public record MedicationRequest(
 
     @NotBlank
     String frequency,
-    LocalTime takenAt,
     Status status
 ) {
 }
