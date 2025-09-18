@@ -42,9 +42,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/api/medications").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/api/medications").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/medications/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.PUT, "/api/medications/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.DELETE, "/api/medications/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/medications/del/{id}").hasRole("USER")
 
                         .requestMatchers(HttpMethod.POST, "/api/intakes/{medicationId}").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/api/intakes").hasRole("USER")

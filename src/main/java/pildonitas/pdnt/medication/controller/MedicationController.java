@@ -27,9 +27,23 @@ public class MedicationController {
         return new ResponseEntity<>(medications, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<MedicationResponse> addMedication(@Valid @RequestBody MedicationRequest medicationRequest, @AuthenticationPrincipal User user) {
-        MedicationResponse MedicationResponse = medicationService.addMedication(medicationRequest, user.getId());
-        return new ResponseEntity<>(MedicationResponse, HttpStatus.CREATED);
+    @PostMapping("/{userId}")
+    public ResponseEntity<MedicationResponse> addMedication(@Valid @RequestBody MedicationRequest medicationRequest, @PathVariable Long userId) {
+        MedicationResponse medicationResponse = medicationService.addMedication(medicationRequest, medicationRequest.userId());
+        return new ResponseEntity<>(medicationResponse, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<MedicationResponse> updateMedication(@PathVariable Long userId, @Valid @RequestBody MedicationRequest medicationRequest) {
+        MedicationResponse medicationResponse = medicationService.updateMedication(medicationRequest, userId);
+        return new ResponseEntity<>(medicationResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/del/{medicationId}")
+    public ResponseEntity<Void> deleteMedication(@PathVariable Long medicationId) {
+        medicationService.deleteMedication(medicationId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 }
