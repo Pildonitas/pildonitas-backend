@@ -3,7 +3,7 @@ package pildonitas.pdnt.intake;
 import jakarta.persistence.*;
 import lombok.*;
 import pildonitas.pdnt.medication.Medication;
-import pildonitas.pdnt.medication.status.Status;
+import pildonitas.pdnt.intake.status.Status;
 
 import java.time.LocalDateTime;
 

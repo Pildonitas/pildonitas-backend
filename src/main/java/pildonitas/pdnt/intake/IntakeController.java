@@ -29,4 +29,10 @@ public class IntakeController {
         List<IntakeResponse> intakes = intakeService.getAllIntakes();
         return new ResponseEntity(intakes, HttpStatus.OK);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<IntakeResponse> updateIntake(@PathVariable Long id, @RequestBody IntakeRequest request) {
+        IntakeResponse response = intakeService.updateIntake(id, request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

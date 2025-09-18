@@ -14,4 +14,8 @@ public class IntakeMapper {
                 .map(IntakeMapper::entityToDto)
                 .toList();
     }
+
+    public static void updateEntityFromRequest(Intake intake, IntakeRequest request) {
+        intake.setStatus(request.getStatus());
+    }
 }
