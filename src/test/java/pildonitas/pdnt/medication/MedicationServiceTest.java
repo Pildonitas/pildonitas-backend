@@ -7,17 +7,25 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import pildonitas.pdnt.medication.dto.MedicationMapper;
+import pildonitas.pdnt.medication.dto.MedicationRequest;
 import pildonitas.pdnt.medication.dto.MedicationResponse;
 import pildonitas.pdnt.medication.services.MedicationService;
+import pildonitas.pdnt.medication.status.Status;
+import pildonitas.pdnt.user.User;
+import pildonitas.pdnt.user.UserRepository;
 import pildonitas.pdnt.user.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class MedicationServiceTest {
@@ -66,4 +74,26 @@ public class MedicationServiceTest {
         verify(medicationRepository, times(1)).findByUserId(userId);
     }
 
+    @Test
+    @DisplayName("Get medication by id when medication exist")
+    void getMedicationById_whenMedicationExist_returnsMedicationResponse() {
+        Long medicationId = 1L;
+        Medication medication = new Medication();
+        medication.setId(medicationId);
+        medication.setName("Medication 1");
+        medication.setDescription("Description test");
+        medication.setDosage("50mg");
+        medication.setFrequency("3x");
+
+        MedicationResponse expectedResponse = MedicationMapper.entityToDto(medication);
+        given(medicationRepository.findById(medicationId)).willReturn(Optional.of(medication));
+        MedicationResponse result = medicationService.getMedicationById(medicationId);
+
+        assertThat(result.name()).isEqualTo(expectedResponse.name());
+        assertThat(result.description()).isEqualTo(expectedResponse.description());
+        assertThat(result.dosage()).isEqualTo(expectedResponse.dosage());
+        assertThat(result.frequency()).isEqualTo(expectedResponse.frequency());
+
+        verify(medicationRepository, times(1)).findById(medicationId);
+    }
 }
